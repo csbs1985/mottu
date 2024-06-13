@@ -1,0 +1,8 @@
+:root {
+    --border: 1px solid var(--color-border);
+}
+
+.bd {
+    border: var(--border);
+    border-radius: 1rem;
+}

@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './reset';
+@import './background';
+@import './border';
+@import './button';
+@import './color';
+@import './font';
+@import './navigation';
+
+* {
+    // color: bla;
+}

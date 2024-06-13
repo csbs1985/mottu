@@ -1,0 +1,13 @@
+.btn {
+    &-active {
+        background-color: white;
+
+        svg>path {
+            fill: var(--color-active);
+        }
+
+        p {
+            color: var(--color-active);
+        }
+    }
+}

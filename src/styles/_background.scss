@@ -1,0 +1,9 @@
+.bg {
+    &-header {
+        background-color: var(--color-bg-element);
+    }
+
+    &-page {
+        background-color: var(--color-bg-page);
+    }
+}
