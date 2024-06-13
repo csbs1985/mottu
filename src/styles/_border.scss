@@ -5,4 +5,8 @@
 .bd {
     border: var(--border);
     border-radius: 1rem;
+
+    &-b {
+        border-bottom: var(--border);
+    }
 }
