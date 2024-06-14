@@ -3,42 +3,4 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    button {
-        cursor: pointer;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0 1rem;
-        border: 0.063rem solid var(--color-border);
-        border-radius: 1rem;
-
-        svg>path {
-            fill: var(--color-inactive);
-        }
-
-        p {
-            color: var(--color-inactive);
-            font-weight: 600;
-            text-transform: capitalize;
-        }
-
-        span {
-            width: 1.25rem;
-            height: 1.25rem;
-            background-color: white;
-            border: 0.063rem solid var(--color-active);
-            border-radius: 50%;
-        }
-    }
-
-    button:first-of-type {
-        border-radius: 1.25rem 0 0 1.25rem;
-    }
-
-    button:last-of-type {
-        border-radius: 0 1.25rem 1.25rem 0;
-    }
 }

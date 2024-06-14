@@ -1,5 +1,6 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppAbstracts } from '../../app.abstracts';
 import { CardCharacterComponent } from '../../components/card-character/card-character.component';
@@ -8,7 +9,7 @@ import { CharacterInterface } from '../../models/character.interface';
 @Component({
   selector: 'fcm-favoritos-page',
   standalone: true,
-  imports: [CommonModule, NgIf, CardCharacterComponent],
+  imports: [CommonModule, NgIf, CardCharacterComponent, RouterLink],
   templateUrl: './favoritos-page.component.html'
 })
 export class FavoritosPageComponent extends AppAbstracts implements OnInit, OnDestroy {

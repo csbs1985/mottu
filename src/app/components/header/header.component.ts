@@ -7,8 +7,7 @@ import { PagesEnum } from '../../enums/pages.enum';
   selector: 'fcm-header',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent extends AppAbstracts {
   protected favoritesAmount: number = 0;

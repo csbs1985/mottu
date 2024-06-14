@@ -4,11 +4,14 @@
     </div>
 
     @if (listCharacters.length > 0 ) {
-        <fcm-card-character [listCharacters]="listCharacters"></fcm-card-character>
+    <fcm-card-character [listCharacters]="listCharacters"></fcm-card-character>
     } @else {
         <div class="box">
-            <p class="txt-subtitle">Nada foi encontrado</p>
-            <p class="txt-subtext">Tente realizar uma nova busca.</p>
+            <p class="txt-subtitle">Parece que você ainda não tem favoritos</p>
+
+            <p class="txt-subtext">Volte à página inicial e escolha os melhores para você.</p>
+
+            <button class="btn-primary" [routerLink]="['/inicio']">Voltar ao início</button>
         </div>
     }
 </section>
