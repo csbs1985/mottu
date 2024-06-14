@@ -1,16 +1,16 @@
-<section class="overflow-hidden">
+<section>
     <div class="flex flex-col lg:flex-row justify-between gap-4 overflow-hidden">
         <p class="txt-title">INÍCIO</p>
 
-        <input type="text" placeholder="Pesquisar" (keydown)="keydown($event)" class="w-full lg:w-[320px]">
+        <input type="text" placeholder="Pesquisar" (keyup)="keyup($event)" class="w-full lg:w-[320px]">
     </div>
 
-    @if (listCharacters.length < 0) { 
-        <div class="box">
-        <p class="txt-subtitle">Nada foi encontrado</p>
-        <p class="txt-subtext">Tente realizar uma nova busca.</p>
-        </div>
-    } @else {
+    @if (listCharacters.length > 0 ) {
         <fcm-card-character [listCharacters]="listCharacters"></fcm-card-character>
+    } @else {
+        <div class="box">
+            <p class="txt-subtitle">Nada foi encontrado</p>
+            <p class="txt-subtext">Tente realizar uma nova busca.</p>
+        </div>
     }
 </section>

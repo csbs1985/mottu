@@ -6,8 +6,7 @@ import { CharacterInterface } from '../../models/character.interface';
   selector: 'fcm-card-character',
   standalone: true,
   imports: [NgFor, NgIf],
-  templateUrl: './card-character.component.html',
-  styleUrl: './card-character.component.scss'
+  templateUrl: './card-character.component.html'
 })
 export class CardCharacterComponent {
   @Input() listCharacters: CharacterInterface[] = [];

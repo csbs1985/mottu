@@ -9,9 +9,17 @@ import { CharacterResponseInterface } from "../models/character-response.interfa
 export class ApiService {
     private _httpClient = inject(HttpClient);
 
-    private readonly apiUrl = 'https://rickandmortyapi.com/api/character';
+    private readonly apiBase = 'https://rickandmortyapi.com/api/character';
+
+    getCharacterName(text: string): Observable<CharacterResponseInterface> {
+        return this._httpClient.get<CharacterResponseInterface>(`${this.apiBase}/?name=${text}`);
+    }
+
+    getCharacterId(list: string[]): Observable<CharacterResponseInterface> {
+        return this._httpClient.get<CharacterResponseInterface>(`${this.apiBase}/${list}`);
+    }
 
     getCharacters(): Observable<CharacterResponseInterface> {
-        return this._httpClient.get<CharacterResponseInterface>(this.apiUrl);
+        return this._httpClient.get<CharacterResponseInterface>(this.apiBase);
     }
 }

@@ -22,20 +22,27 @@ export class InicioPageComponent extends AppAbstracts implements OnInit, OnDestr
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
   private getCharacters(): void {
     this.subscription = this._apiService.getCharacters().subscribe((data: CharacterResponseInterface) => {
-      this.listCharacters = data.results;     
-    });
+      this.listCharacters = data.results;
+    }, error => { this.listCharacters = []; });
   }
 
-  protected keydown(event: KeyboardEvent): void {
+  protected keyup(event: KeyboardEvent): void {
     const inputElement = event.target as HTMLInputElement;
     const text = inputElement.value;
-    console.log(text);
+
+    text.length >= 0
+      ? this.getCharacterName(text)
+      : this.getCharacters();
+  }
+
+  private getCharacterName(text: string): void {
+    this.subscription = this._apiService.getCharacterName(text).subscribe((data: CharacterResponseInterface) => {
+      this.listCharacters = data.results;
+    }, error => { this.listCharacters = []; });
   }
 }
