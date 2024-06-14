@@ -6,10 +6,19 @@
     border: var(--border);
     border-radius: 1rem;
     padding-bottom: 1rem;
+    position: relative;
 
     img {
         width: 100%;
         border-radius: 1rem 1rem 0 0;
+    }
+
+    img:last-of-type {
+        cursor: pointer;
+        width: 2rem;
+        position: absolute;
+        top: 8px;
+        right: 8px;
     }
 
     p {
@@ -21,6 +30,6 @@
         font-family: "Creepster", system-ui;
         font-size: 24px;
         color: var(--color-txt-primary);
-        padding: .5rem 1rem 0 ;
+        padding: .5rem 1rem 0;
     }
 }
