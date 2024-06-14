@@ -1,0 +1,26 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background-color: var(--color-bg-element);
+    border: var(--border);
+    border-radius: 1rem;
+    padding-bottom: 1rem;
+
+    img {
+        width: 100%;
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    p {
+        color: var(--color-txt-secondary);
+        padding: 0 1rem 0;
+    }
+
+    p:first-of-type {
+        font-family: "Creepster", system-ui;
+        font-size: 24px;
+        color: var(--color-txt-primary);
+        padding: .5rem 1rem 0 ;
+    }
+}

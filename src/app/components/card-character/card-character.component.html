@@ -1,0 +1,13 @@
+<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-around gap-8 mt-8">
+    @for (item of listCharacters; track item; let i = $index) {
+    <div class="card">
+        <img [src]="item.image" [alt]="item.name">
+
+        <p>{{item.name}}</p>
+
+        <p>{{item.species}}</p>
+
+        <p *ngIf="item.type">{{item.type}}</p>
+    </div>
+    }
+</section>
