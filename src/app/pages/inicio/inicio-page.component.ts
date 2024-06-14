@@ -10,8 +10,7 @@ import { CharacterInterface } from '../../models/character.interface';
   selector: 'fcm-inicio-page',
   standalone: true,
   imports: [CommonModule, NgIf, CardCharacterComponent],
-  templateUrl: './inicio-page.component.html',
-  styleUrl: './inicio-page.component.scss'
+  templateUrl: './inicio-page.component.html'
 })
 export class InicioPageComponent extends AppAbstracts implements OnInit, OnDestroy {
   protected listCharacters: CharacterInterface[] = [];
@@ -19,10 +18,7 @@ export class InicioPageComponent extends AppAbstracts implements OnInit, OnDestr
 
   ngOnInit(): void {
     this.getCharacters();
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
+    this._favoriteService.getFavorited();
   }
 
   private getCharacters(): void {
@@ -44,5 +40,9 @@ export class InicioPageComponent extends AppAbstracts implements OnInit, OnDestr
     this.subscription = this._apiService.getCharacterName(text).subscribe((data: CharacterResponseInterface) => {
       this.listCharacters = data.results;
     }, error => { this.listCharacters = []; });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

@@ -6,10 +6,15 @@ import { Injectable } from "@angular/core";
 export class FavoriteService {
     listFavorited: string[] = [];
 
+    getFavorited(): void {
+        const favorites = localStorage.getItem('favorites');
+        this.listFavorited = favorites ? JSON.parse(favorites) : [];
+    }
+
     toggleFavorite(id: number): void {
         const characterId = id.toString();
         const favorites = localStorage.getItem('favorites');
-        const updatedFavorites = favorites ? JSON.parse(favorites) || [] : [];
+        const updatedFavorites = favorites ? JSON.parse(favorites) : [];
 
         this.listFavorited = updatedFavorites.includes(characterId)
             ? updatedFavorites.filter((item: string) => item !== characterId)
@@ -19,9 +24,6 @@ export class FavoriteService {
     }
 
     isFavorited(id: number): string {
-        const favorites = localStorage.getItem('favorites');
-        this.listFavorited = favorites ? JSON.parse(favorites) || [] : [];
-
         return this.listFavorited.find((item: string) => item === id.toString())
             ? 'assets/icons/favorited.png'
             : 'assets/icons/favorite.png';

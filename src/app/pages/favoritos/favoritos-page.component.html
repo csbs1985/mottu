@@ -1,1 +1,14 @@
-<p>favoritos works!</p>
+<section>
+    <div class="flex flex-col lg:flex-row justify-between gap-4 overflow-hidden">
+        <p class="txt-title">FAVORITOS</p>
+    </div>
+
+    @if (listCharacters.length > 0 ) {
+        <fcm-card-character [listCharacters]="listCharacters"></fcm-card-character>
+    } @else {
+        <div class="box">
+            <p class="txt-subtitle">Nada foi encontrado</p>
+            <p class="txt-subtext">Tente realizar uma nova busca.</p>
+        </div>
+    }
+</section>

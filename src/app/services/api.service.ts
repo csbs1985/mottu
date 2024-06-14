@@ -2,21 +2,23 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { CharacterResponseInterface } from "../models/character-response.interface";
+import { FavoriteService } from "./favorite.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
     private _httpClient = inject(HttpClient);
+    private _favoriteService = inject(FavoriteService);
 
     private readonly apiBase = 'https://rickandmortyapi.com/api/character';
 
-    getCharacterName(text: string): Observable<CharacterResponseInterface> {
-        return this._httpClient.get<CharacterResponseInterface>(`${this.apiBase}/?name=${text}`);
+    getCharacterFavorites(list: string[]): Observable<CharacterResponseInterface> {
+        return this._httpClient.get<CharacterResponseInterface>(`${this.apiBase}/[${list}]`);
     }
 
-    getCharacterId(list: string[]): Observable<CharacterResponseInterface> {
-        return this._httpClient.get<CharacterResponseInterface>(`${this.apiBase}/${list}`);
+    getCharacterName(text: string): Observable<CharacterResponseInterface> {
+        return this._httpClient.get<CharacterResponseInterface>(`${this.apiBase}/?name=${text}`);
     }
 
     getCharacters(): Observable<CharacterResponseInterface> {
