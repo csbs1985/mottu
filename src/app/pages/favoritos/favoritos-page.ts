@@ -13,21 +13,22 @@ import { CharacterInterface } from '../../models/character.interface';
 })
 export class FavoritosPage extends AppAbstracts implements OnInit {
   protected listCharacters: CharacterInterface[] = [];
-  protected listFavorites: number[] = [];
 
   ngOnInit(): void {
     this.getFavorite();
   }
 
-  private async getFavorite(): Promise<void> {
-    this._subSink.sink = await this._favoriteService.favorites$.subscribe(dados => {
-      this.listFavorites = dados;
+  private getFavorite(): void {
+    this._subSink.sink = this._favoriteService.favorites$.subscribe(dados => {
+      dados.length > 0
+        ? this.getCharacterFavorites(dados)
+        : this.listCharacters = [];
     });
+  }
 
-    if (this.listFavorites.length > 0) {
-      this._subSink.sink = this._apiService.getCharacterFavorites(this.listFavorites).subscribe((data: any) => {
-        this.listCharacters = data;
-      }, error => { this.listCharacters = []; });
-    }
+  private getCharacterFavorites(dados: number[]): void {
+    this._subSink.sink = this._apiService.getCharacterFavorites(dados).subscribe((data: any) => {
+      this.listCharacters = data;
+    }, error => { this.listCharacters = []; });
   }
 }
