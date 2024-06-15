@@ -10,7 +10,7 @@ import { CharacterInterface } from '../../models/character.interface';
   selector: 'fcm-favoritos-page',
   standalone: true,
   imports: [CommonModule, NgIf, CardCharacterComponent, RouterLink],
-  templateUrl: './favoritos-page.component.html'
+  templateUrl: './favoritos-page.html'
 })
 export class FavoritosPageComponent extends AppAbstracts implements OnInit, OnDestroy {
   protected listCharacters: CharacterInterface[] = [];

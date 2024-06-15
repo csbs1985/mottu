@@ -1,9 +1,23 @@
 import { Injectable } from "@angular/core";
+import { Observable, Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FavoriteService {
+    private favoriteSubject = new Subject<string[]>();
+    favorite$ = this.favoriteSubject.asObservable();
+
+    setFavorite(list: string[]) {
+        this.favoriteSubject.next(list);
+    }
+
+    getFavorite(): Observable<string[]> {
+        return this.favorite$;
+    }
+
+
+    ///////////////////////////////////
     listFavorited: string[] = [];
 
     getFavorited(): void {

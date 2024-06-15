@@ -2,8 +2,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesEnum } from './enums/pages.enum';
-import { FavoritosPageComponent } from './pages/favoritos/favoritos-page.component';
-import { InicioPageComponent } from './pages/inicio/inicio-page.component';
+import { FavoritosPageComponent } from './pages/favoritos/favoritos-page';
+import { InicioPageComponent } from './pages/inicio/inicio-page';
 
 export const routes: Routes = [
     { path: '', redirectTo: PagesEnum.INICIO, pathMatch: 'full' },

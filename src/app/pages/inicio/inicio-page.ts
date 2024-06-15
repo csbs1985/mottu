@@ -10,7 +10,7 @@ import { CharacterInterface } from '../../models/character.interface';
   selector: 'fcm-inicio-page',
   standalone: true,
   imports: [CommonModule, NgIf, CardCharacterComponent],
-  templateUrl: './inicio-page.component.html'
+  templateUrl: './inicio-page.html'
 })
 export class InicioPageComponent extends AppAbstracts implements OnInit, OnDestroy {
   protected listCharacters: CharacterInterface[] = [];
