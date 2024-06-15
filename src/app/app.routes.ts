@@ -2,13 +2,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesEnum } from './enums/pages.enum';
-import { FavoritosPage } from './pages/favoritos/favoritos-page';
-import { InicioPage } from './pages/inicio/inicio-page';
 
 export const routes: Routes = [
     { path: "", redirectTo: "", pathMatch: 'full' },
-    { path: "", component: InicioPage },
-    { path: PagesEnum.FAVORITOS, component: FavoritosPage },
+    { path: "", loadComponent: () => import('./pages/inicio/inicio-page').then(m => m.InicioPage) },
+    { path: PagesEnum.FAVORITOS, loadComponent: () => import('./pages/favoritos/favoritos-page').then(m => m.FavoritosPage) },
     { path: '**', redirectTo: "" }
 ];
 

@@ -1,5 +1,5 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AppAbstracts } from '../../app.abstracts';
 import { CardCharacterComponent } from '../../components/card-character/card-character.component';
@@ -11,7 +11,7 @@ import { CharacterInterface } from '../../models/character.interface';
   imports: [CommonModule, NgIf, CardCharacterComponent, RouterLink],
   templateUrl: './favoritos-page.html'
 })
-export class FavoritosPage extends AppAbstracts implements OnInit, OnDestroy {
+export class FavoritosPage extends AppAbstracts implements OnInit {
   protected listCharacters: CharacterInterface[] = [];
   protected listFavorites: number[] = [];
 
