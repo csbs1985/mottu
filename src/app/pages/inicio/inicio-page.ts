@@ -19,7 +19,7 @@ export class InicioPage extends AppAbstracts implements OnInit {
   }
 
   private getCharacters(): void {
-    this._subSink= this._apiService.getCharacters().subscribe((data: CharacterResponseInterface) => {
+    this._subSink.sink = this._apiService.getCharacters().subscribe((data: CharacterResponseInterface) => {
       this.listCharacters = data.results;
     }, error => { this.listCharacters = []; });
   }
@@ -34,7 +34,7 @@ export class InicioPage extends AppAbstracts implements OnInit {
   }
 
   private getCharacterName(text: string): void {
-    this._subSink= this._apiService.getCharacterName(text).subscribe((data: CharacterResponseInterface) => {
+    this._subSink.sink = this._apiService.getCharacterName(text).subscribe((data: CharacterResponseInterface) => {
       this.listCharacters = data.results;
     }, error => { this.listCharacters = []; });
   }

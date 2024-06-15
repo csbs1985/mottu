@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Injectable, OnDestroy, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { SubSink } from "subsink";
@@ -10,6 +11,7 @@ export abstract class AppAbstracts implements OnDestroy {
     protected _favoriteService = inject(FavoriteService);
 
     protected _router = inject(Router);
+    protected _location = inject(Location);
 
     protected _subSink = new SubSink();
 

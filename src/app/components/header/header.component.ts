@@ -11,8 +11,7 @@ import { PagesEnum } from '../../enums/pages.enum';
 })
 export class HeaderComponent extends AppAbstracts {
   protected favoriteAmount: number = 0;
-  protected pageSelected: PagesEnum = PagesEnum.INICIO;
-
+  protected page: PagesEnum = PagesEnum.INICIO;
   protected PagesEnum = PagesEnum;
 
   ngOnInit(): void {
@@ -26,7 +25,13 @@ export class HeaderComponent extends AppAbstracts {
   }
 
   protected selectePage(page: PagesEnum): void {
-    this.pageSelected = page;
+    this.page = page;
     this._router.navigate([`/${page}`]);
+  }
+
+  get pageSelected(): PagesEnum {
+    return this._location.path() === '/favoritos'
+      ? PagesEnum.FAVORITOS
+      : PagesEnum.INICIO
   }
 }
