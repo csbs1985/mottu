@@ -1,7 +1,6 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { AppAbstracts } from '../../app.abstracts';
 import { CardCharacterComponent } from '../../components/card-character/card-character.component';
 import { CharacterInterface } from '../../models/character.interface';
@@ -14,24 +13,21 @@ import { CharacterInterface } from '../../models/character.interface';
 })
 export class FavoritosPage extends AppAbstracts implements OnInit, OnDestroy {
   protected listCharacters: CharacterInterface[] = [];
-  private subscription!: Subscription;
+  protected listFavorites: number[] = [];
 
   ngOnInit(): void {
-    this.getCharacters();
-    this._favoriteService.getFavorited();
+    this.getFavorite();
   }
 
-  private getCharacters(): void {
-    const list = this._favoriteService.listFavorited;
+  private async getFavorite(): Promise<void> {
+    this._subSink.sink = await this._favoriteService.favorites$.subscribe(dados => {
+      this.listFavorites = dados;
+    });
 
-    if (list) {
-      this.subscription = this._apiService.getCharacterFavorites(list).subscribe((data: any) => {
+    if (this.listFavorites.length > 0) {
+      this._subSink.sink = this._apiService.getCharacterFavorites(this.listFavorites).subscribe((data: any) => {
         this.listCharacters = data;
       }, error => { this.listCharacters = []; });
     }
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
   }
 }

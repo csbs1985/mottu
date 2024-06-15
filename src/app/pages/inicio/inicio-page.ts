@@ -1,6 +1,5 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { AppAbstracts } from '../../app.abstracts';
 import { CardCharacterComponent } from '../../components/card-character/card-character.component';
 import { CharacterResponseInterface } from '../../models/character-response.interface';
@@ -12,17 +11,15 @@ import { CharacterInterface } from '../../models/character.interface';
   imports: [CommonModule, NgIf, CardCharacterComponent],
   templateUrl: './inicio-page.html'
 })
-export class InicioPage extends AppAbstracts implements OnInit, OnDestroy {
+export class InicioPage extends AppAbstracts implements OnInit {
   protected listCharacters: CharacterInterface[] = [];
-  private subscription!: Subscription;
 
   ngOnInit(): void {
     this.getCharacters();
-    this._favoriteService.getFavorited();
   }
 
   private getCharacters(): void {
-    this.subscription = this._apiService.getCharacters().subscribe((data: CharacterResponseInterface) => {
+    this._subSink= this._apiService.getCharacters().subscribe((data: CharacterResponseInterface) => {
       this.listCharacters = data.results;
     }, error => { this.listCharacters = []; });
   }
@@ -37,12 +34,8 @@ export class InicioPage extends AppAbstracts implements OnInit, OnDestroy {
   }
 
   private getCharacterName(text: string): void {
-    this.subscription = this._apiService.getCharacterName(text).subscribe((data: CharacterResponseInterface) => {
+    this._subSink= this._apiService.getCharacterName(text).subscribe((data: CharacterResponseInterface) => {
       this.listCharacters = data.results;
     }, error => { this.listCharacters = []; });
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
   }
 }

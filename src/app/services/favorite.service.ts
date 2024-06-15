@@ -1,44 +1,38 @@
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FavoriteService {
-    private favoriteSubject = new Subject<string[]>();
-    favorite$ = this.favoriteSubject.asObservable();
+    private listFavorites: number[] = [];
 
-    setFavorite(list: string[]) {
-        this.favoriteSubject.next(list);
+    favorites$ = new Subject<number[]>();
+
+    isFavorited(idObjeto: number): void {
+        return this.listFavorites.includes(idObjeto)
+            ? this.deleteFavorite(idObjeto)
+            : this.saveFavorite(idObjeto);
     }
 
-    getFavorite(): Observable<string[]> {
-        return this.favorite$;
+    saveFavorite(idObjeto: number): void {
+        if (!this.listFavorites.includes(idObjeto)) {
+            this.listFavorites.push(idObjeto);
+            this.favorites$.next(this.listFavorites);
+        }
     }
 
+    deleteFavorite(idObjeto: number): void {
+        const index = this.listFavorites.indexOf(idObjeto);
 
-    ///////////////////////////////////
-    listFavorited: string[] = [];
-
-    getFavorited(): void {
-        const favorites = localStorage.getItem('favorites');
-        this.listFavorited = favorites ? JSON.parse(favorites) : [];
+        if (index !== -1) {
+            this.listFavorites.splice(index, 1);
+            this.favorites$.next(this.listFavorites);
+        }
     }
 
-    toggleFavorite(id: number): void {
-        const characterId = id.toString();
-        const favorites = localStorage.getItem('favorites');
-        const updatedFavorites = favorites ? JSON.parse(favorites) : [];
-
-        this.listFavorited = updatedFavorites.includes(characterId)
-            ? updatedFavorites.filter((item: string) => item !== characterId)
-            : [...updatedFavorites, characterId];
-
-        localStorage.setItem('favorites', JSON.stringify(this.listFavorited));
-    }
-
-    isFavorited(id: number): string {
-        return this.listFavorited.find((item: string) => item === id.toString())
+    getFavoriteIcon(idObjeto: number): string {
+        return this.listFavorites.includes(idObjeto)
             ? 'assets/icons/favorited.png'
             : 'assets/icons/favorite.png';
     }
