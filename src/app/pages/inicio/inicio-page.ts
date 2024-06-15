@@ -12,7 +12,7 @@ import { CharacterInterface } from '../../models/character.interface';
   imports: [CommonModule, NgIf, CardCharacterComponent],
   templateUrl: './inicio-page.html'
 })
-export class InicioPageComponent extends AppAbstracts implements OnInit, OnDestroy {
+export class InicioPage extends AppAbstracts implements OnInit, OnDestroy {
   protected listCharacters: CharacterInterface[] = [];
   private subscription!: Subscription;
 

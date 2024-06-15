@@ -12,7 +12,7 @@ import { CharacterInterface } from '../../models/character.interface';
   imports: [CommonModule, NgIf, CardCharacterComponent, RouterLink],
   templateUrl: './favoritos-page.html'
 })
-export class FavoritosPageComponent extends AppAbstracts implements OnInit, OnDestroy {
+export class FavoritosPage extends AppAbstracts implements OnInit, OnDestroy {
   protected listCharacters: CharacterInterface[] = [];
   private subscription!: Subscription;
 
