@@ -5,7 +5,7 @@ import { Subject } from "rxjs";
     providedIn: 'root'
 })
 export class FavoriteService {
-    private listFavorites: number[] = [];
+    listFavorites: number[] = [];
 
     favorites$ = new Subject<number[]>();
 

@@ -11,4 +11,5 @@ import { CharacterInterface } from '../../models/character.interface';
 })
 export class CardCharacterComponent extends AppAbstracts {
   @Input() listCharacters: CharacterInterface[] = [];
+  @Input() showFavorite: boolean = false;
 }

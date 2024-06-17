@@ -13,17 +13,18 @@ import { CharacterInterface } from '../../models/character.interface';
 })
 export class FavoritosPage extends AppAbstracts implements OnInit {
   protected listCharacters: CharacterInterface[] = [];
+  protected listFavorites: number[] = [];
 
   ngOnInit(): void {
     this.getFavorite();
   }
 
   private getFavorite(): void {
-    this._subSink.sink = this._favoriteService.favorites$.subscribe(dados => {
-      dados.length > 0
-        ? this.getCharacterFavorites(dados)
-        : this.listCharacters = [];
-    });
+    let listFavorites = this._favoriteService.listFavorites;
+
+    (listFavorites.length > 0)
+      ? this.getCharacterFavorites(listFavorites)
+      : this.listCharacters = [];
   }
 
   private getCharacterFavorites(dados: number[]): void {

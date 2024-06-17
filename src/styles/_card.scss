@@ -8,12 +8,12 @@
     padding-bottom: 1rem;
     position: relative;
 
-    img {
+    &-avatar {
         width: 100%;
         border-radius: 1rem 1rem 0 0;
     }
 
-    img:last-of-type {
+    &-icon {
         cursor: pointer;
         width: 2rem;
         position: absolute;

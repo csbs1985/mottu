@@ -1,16 +1,16 @@
 <section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-around gap-8 mt-8">
     @for (item of listCharacters; track $index) {
-    <div class="card">
-        <img [src]="item.image" [alt]="item.name">
+        <div class="card">
+            <img class="card-avatar" [src]="item.image" [alt]="item.name">
 
-        <p>{{item.name}}</p>
+            <p>{{item.name}}</p>
 
-        <p>{{item.species}}</p>
+            <p>{{item.species}}</p>
 
-        <p *ngIf="item.type">{{item.type}}</p>
+            <p *ngIf="item.type">{{item.type}}</p>
 
-        <img [src]="_favoriteService.getFavoriteIcon(item.id!)" [alt]="'Favorito'"
-            (click)="_favoriteService.isFavorited(item.id!)">
-    </div>
+            <img *ngIf="showFavorite" [src]="_favoriteService.getFavoriteIcon(item.id!)" [alt]="'Favorito'" class="card-icon"
+                (click)="_favoriteService.isFavorited(item.id!)">
+        </div>
     }
 </section>

@@ -6,7 +6,7 @@
     </div>
 
     @if (listCharacters.length > 0 ) {
-        <fcm-card-character [listCharacters]="listCharacters"></fcm-card-character>
+        <fcm-card-character [listCharacters]="listCharacters" [showFavorite]="true"></fcm-card-character>
     } @else {
         <div class="box">
             <p class="txt-subtitle">Nada foi encontrado</p>
